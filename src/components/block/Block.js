@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import classes from "./Block.module.css";
 
 const Block = (props) => {
   const [backColor, setBackColor] = useState("white");
   const [isFlipped, setIsflipped] = useState(false);
-
+  
   if (props.color === 1 && backColor !== "white") {
     setBackColor("white");
   }
@@ -19,7 +19,7 @@ const Block = (props) => {
   if (props.color === 2 && isFlipped !== true) {
     setIsflipped(true);
   }
-  let divClassName= classes.displayDiv;
+  let divClassName= classes.backDiv;
   if (props.selectedIds.length === 2 && props.color === 2) {
     if (
       props.array[props.selectedIds[0]] !== props.array[props.selectedIds[1]]
@@ -32,15 +32,15 @@ const Block = (props) => {
     props.selectDiv(props.id);
   };
 
+
   return (
     <div onClick={selectDivHandler} className={classes.container}>
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <div
-          className={classes.displayDiv}
-          style={{ background: backColor }}
+          className={classes.frontDiv}
         ></div>
         <div className={divClassName} 
-          style={{ background: backColor}}>
+          >
           {props.children}
         </div>
       </ReactCardFlip>

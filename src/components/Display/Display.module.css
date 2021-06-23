@@ -2,15 +2,31 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  padding-top: 20vh;
+
 }
 
 .content {
   width: 50%;
   margin: auto;
-  margin-top: 20vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.btnDiv{
+  width: 50%;
+  margin: 20px auto;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  font-size: 30px;
+  justify-content: space-between;
+}
+.btn{
+  font-size: 30px; 
+  padding: 5px 15px;  
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 1200px) {

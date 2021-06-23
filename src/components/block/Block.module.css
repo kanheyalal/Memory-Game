@@ -6,24 +6,41 @@
     transition: all 1s ease-out;
 }
 
-.displayDiv{
+.frontDiv{
     width: 95%;
+    background-color: white;
+    margin: auto;
+    height: 100px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 100px;
+}
+.backDiv{
+    width: 95%;
+    background-color: #87CEEB;
     margin: auto;
     height: 100px;
     border-radius: 5px;
     text-align: center;
     line-height: 100px;
     font-size: 50px;
+    color: #fff;
+    box-shadow:inset 8px 8px 8px rgb(0 0 0 / 20%), inset -8px -8px 8px rgb(255 255 255 / 20%);
+    text-shadow: 3px 3px 8px rgb(34, 31, 31);
 }
 
 .shakeDisplayDiv{
+    color: white;
+    box-shadow:inset 8px 8px 8px rgb(0 0 0 / 20%), inset -8px -8px 8px rgb(255 255 255 / 20%);
+    text-shadow: 3px 3px 8px rgb(34, 31, 31);
     width: 100%;
+    background-color: #87CEEB;
     height: 100px;
     border-radius: 5px;
     text-align: center;
     line-height: 100px;
     font-size: 50px;
-    animation: shake 1s ease-in;
+    animation: shake 1.5s ease-in;
 }
 
 @keyframes shake {  
@@ -33,15 +50,17 @@
     50%{
         transform: translate(0);
     }
-    60%,80%{
+    70%,80%,90%{
         transform: translate(20px);
         box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
+
     }
-    70%,90%{
+    65%,75%,85%{
         transform: translate(-20px);
     }
     100%{
         transform: translate(0);
+        background-color: red;
     } 
 }
 
@@ -50,17 +69,12 @@
     margin-bottom: -12px;
 
     }
-    .displayDiv{
+    .frontDiv, .backDiv, .shakeDisplayDiv{
         width: 90%;
         height: 80px;
         line-height: 80px;
+        font-size: 40px;
     }
-    .shakeDisplayDiv{
-        width: 90%;
-        height: 80px;
-        line-height: 80px;
-    }
-
     @keyframes shake {  
         0%{
             transform: translate(0);
@@ -68,15 +82,16 @@
         50%{
             transform: translate(0);
         }
-        60%,80%{
+        70%,80%,90%{
             transform: translate(10px);
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
         }
-        70%,90%{
+        65%,75%,85%{
             transform: translate(-10px);
         }
         100%{
             transform: translate(0);
+            background-color: red;
         } 
     }
 

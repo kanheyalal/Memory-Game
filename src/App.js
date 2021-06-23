@@ -1,4 +1,5 @@
 import Display from './components/Display/Display';
+import IconArray from './iconsArray/IconArray';
 
 function App() {
   const shuffle = (array) => {
@@ -10,12 +11,8 @@ function App() {
     }
   };
 
-  const arr = [];
-    for (let i = 1; i <= 8; i++) {
-      arr.push(i);
-      arr.push(i);
-    }
-  shuffle(arr);
+  const arr = IconArray();
+  // shuffle(arr);
 
 
   return (

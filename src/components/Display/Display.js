@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Block from "../block/Block";
 import Green from "../grren/Green";
 import classes from "./Display.module.css";
+import Success from '../Success/Success';
 
 const Display = (props) => {
   const [colorArr, setColorArray] = useState(() => {
@@ -12,10 +13,11 @@ const Display = (props) => {
     return arr;
   });
   const [selectedIds, setSelectedIds] = useState([]);
+  const [noOfMoves, setNoOfMoves] = useState(0);
 
   useEffect(() => {
     if (selectedIds.length === 2) {
-      if (props.array[selectedIds[0]] === props.array[selectedIds[1]]) {
+      if (props.array[selectedIds[0]].value === props.array[selectedIds[1]].value) {
         setTimeout(() => {
           setColorArray((prevState) => {
             prevState[selectedIds[0]] = 3;
@@ -23,6 +25,8 @@ const Display = (props) => {
             return prevState;
           });
           setSelectedIds([]);
+          setNoOfMoves(prevState=>prevState+1);
+
         }, 500);
       } else {
         setTimeout(() => {
@@ -32,10 +36,12 @@ const Display = (props) => {
             return prevState;
           });
           setSelectedIds([]);
-        }, 1000);
+          setNoOfMoves(prevState=>prevState+1);
+        }, 1500);
       }
     }
   }, [selectedIds, colorArr, props.array]);
+
 
   const selectDiv = (id) => {
     if (selectedIds.length === 2) {
@@ -71,7 +77,7 @@ const Display = (props) => {
   const displayArr = [];
   for (let i = 0; i < props.array.length; i++) {
     if (colorArr[i] === 3) {
-      displayArr.push(<Green key={i}>{props.array[i]}</Green>);
+      displayArr.push(<Green key={i}>{props.array[i].icon}</Green>);
     } else {
       displayArr.push(
         <Block
@@ -82,14 +88,52 @@ const Display = (props) => {
           selectedIds={selectedIds}
           array={props.array}
         >
-          {props.array[i]}
+          {props.array[i].icon}
         </Block>
       );
     }
   }
 
+  const restartGameHandler = () =>{
+    setColorArray(()=>{
+      const arr = [];
+      for (let i = 0; i < props.array.length; i++) {
+        arr.push(1);
+      }
+      return arr;
+    });
+    setSelectedIds([]);
+    setNoOfMoves(0);
+    const shuffle = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    };
+    shuffle(props.array);
+  }
+
+  let gameOver = true;
+  for(let i=0;i<props.array.length;i++) {
+    if(colorArr[i] === 1 || colorArr[i] === 2) {
+      gameOver=false;
+      break;
+    }
+  }
+  if(gameOver) {
+    setTimeout(()=>{
+      restartGameHandler();
+    },1500)
+  }
+
   return (
     <div className={classes.display}>
+      {/* <Success>you have completed the game in {noOfMoves} moves </Success> */}
+      {/* <div className={classes.btnDiv}>
+        <div>{noOfMoves}</div>
+        <button className={classes.btn} onClick={restartGameHandler}>restart</button></div> */}
       <div className={classes.content}>{displayArr}</div>
     </div>
   );
