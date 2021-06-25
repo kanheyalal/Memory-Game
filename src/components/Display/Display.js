@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Block from "../block/Block";
-import Green from "../grren/Green";
+import Green from "../Completed/Completed";
 import classes from "./Display.module.css";
-import Success from '../Success/Success';
+import Success from "../Success/Success";
 
 const Display = (props) => {
   const [colorArr, setColorArray] = useState(() => {
@@ -14,10 +14,13 @@ const Display = (props) => {
   });
   const [selectedIds, setSelectedIds] = useState([]);
   const [noOfMoves, setNoOfMoves] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     if (selectedIds.length === 2) {
-      if (props.array[selectedIds[0]].value === props.array[selectedIds[1]].value) {
+      if (
+        props.array[selectedIds[0]].value === props.array[selectedIds[1]].value
+      ) {
         setTimeout(() => {
           setColorArray((prevState) => {
             prevState[selectedIds[0]] = 3;
@@ -25,8 +28,7 @@ const Display = (props) => {
             return prevState;
           });
           setSelectedIds([]);
-          setNoOfMoves(prevState=>prevState+1);
-
+          setNoOfMoves((prevState) => prevState + 1);
         }, 500);
       } else {
         setTimeout(() => {
@@ -36,12 +38,11 @@ const Display = (props) => {
             return prevState;
           });
           setSelectedIds([]);
-          setNoOfMoves(prevState=>prevState+1);
+          setNoOfMoves((prevState) => prevState + 1);
         }, 1500);
       }
     }
   }, [selectedIds, colorArr, props.array]);
-
 
   const selectDiv = (id) => {
     if (selectedIds.length === 2) {
@@ -94,8 +95,10 @@ const Display = (props) => {
     }
   }
 
-  const restartGameHandler = () =>{
-    setColorArray(()=>{
+  const restartGameHandler = (val) => {
+    console.log(val)
+    setGameOver(false);
+    setColorArray(() => {
       const arr = [];
       for (let i = 0; i < props.array.length; i++) {
         arr.push(1);
@@ -113,27 +116,31 @@ const Display = (props) => {
       }
     };
     shuffle(props.array);
-  }
+  };
 
-  let gameOver = true;
-  for(let i=0;i<props.array.length;i++) {
-    if(colorArr[i] === 1 || colorArr[i] === 2) {
-      gameOver=false;
+  let GameOver = true;
+  for (let i = 0; i < props.array.length; i++) {
+    if (colorArr[i] === 1 || colorArr[i] === 2) {
+      GameOver = false;
       break;
     }
   }
-  if(gameOver) {
-    setTimeout(()=>{
-      restartGameHandler();
-    },1500)
+  if (GameOver && gameOver === false) {
+    setTimeout(() => {
+      setGameOver(true);
+    }, 1000);
   }
 
   return (
     <div className={classes.display}>
-      {/* <Success>you have completed the game in {noOfMoves} moves </Success> */}
-      {/* <div className={classes.btnDiv}>
-        <div>{noOfMoves}</div>
-        <button className={classes.btn} onClick={restartGameHandler}>restart</button></div> */}
+      {gameOver && (
+        <Success restart={restartGameHandler}>
+          you have completed the game in {noOfMoves} moves{" "}
+        </Success>
+      )}
+      <div className={classes.btnDiv}>
+        <div>Moves : {noOfMoves}</div>
+        <button className={classes.btn} onClick={restartGameHandler}>restart</button></div>
       <div className={classes.content}>{displayArr}</div>
     </div>
   );

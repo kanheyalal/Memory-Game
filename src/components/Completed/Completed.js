@@ -1,4 +1,4 @@
-import classes from "./Green.module.css";
+import classes from "./Completed.module.css";
 import ReactCardFlip from "react-card-flip";
 import { useEffect, useState } from "react";
 

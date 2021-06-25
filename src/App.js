@@ -12,7 +12,7 @@ function App() {
   };
 
   const arr = IconArray();
-  // shuffle(arr);
+  shuffle(arr);
 
 
   return (

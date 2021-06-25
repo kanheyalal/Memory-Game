@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   text-align: center;
-  padding-top: 20vh;
+  padding-top: 15vh;
 
 }
 
@@ -16,35 +16,56 @@
 
 .btnDiv{
   width: 50%;
-  margin: 20px auto;
+  margin: auto;
+  margin-bottom: 10px;
   text-align: right;
   display: flex;
   flex-direction: row;
   font-size: 30px;
   justify-content: space-between;
+  font-family: 'Kirang Haerang', cursive;
+  padding-left: 20px;
+  color: rgb(201, 192, 192);
 }
 .btn{
-  font-size: 30px; 
-  padding: 5px 15px;  
-  border-radius: 5px;
+  display: inline-block;
+  padding: 0.6em 1.7em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+  font-size: 15px;
+  text-shadow: 3px 3px 5px black;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  font-family: 'Kirang Haerang', cursive;
+
 }
 
 @media screen and (max-width: 1200px) {
-  .content {
+  .content, .btnDiv {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 800px) {
-    .content {
+    .content, .btnDiv {
       width: 70%;
     }
   }
   
 
   @media screen and (max-width: 600px) {
-    .content {
+    .content, .btnDiv {
       width: 80%;
+    }
+    .btnDiv{
+      font-size: 25px;
     }
   }
   
