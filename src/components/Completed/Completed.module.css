@@ -22,8 +22,7 @@
 
 @media screen and (max-width: 850px) {
     .container{
-    margin-bottom: -12px;
-
+        height: 80px;
     }
     .displayDiv{
         width: 90%;
